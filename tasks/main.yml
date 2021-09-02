@@ -8,10 +8,14 @@
   become: yes
 
 - name: Download binary
-  unarchive:
+  get_url:
     src: "{{ download_url }}"
+    dest: /tmp
+
+- name: unpack tar
+  unarchive:
+    src: "/tmp/nifi-{{ nifi_version }}-bin.tar.gz"
     dest: /opt
-    remote_src: yes
 
 - name: Create sym link
   file:
