@@ -33,10 +33,15 @@
       unarchive:
         src: /tmp/nifi.tar.gz
         dest: /opt
-        owner: nifi
-        group: nifi
         remote_src: true
       become: yes
+
+    - name: fix owner
+      file:
+        path: /opt/nifi-current
+        recurse: true
+        owner: nifi
+        group: nifi
 
     - name: remote tar
       file:
