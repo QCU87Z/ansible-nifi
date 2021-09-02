@@ -7,6 +7,15 @@
     state: present
   become: yes
 
+- name: nifi user
+  user:
+    create_home: false
+    home: /opt/nifi-current
+    name: nifi
+    password: "!"
+    shell: /usr/sbin/nologin
+    state: present
+
 - name: Check if we need to install nifi
   stat:
     path: /opt/nifi-current/bin/nifi.sh
@@ -23,6 +32,8 @@
       unarchive:
         src: /tmp/nifi.tar.gz
         dest: /opt
+        owner: nifi
+        group: nifi
         remote_src: true
       become: yes
 
