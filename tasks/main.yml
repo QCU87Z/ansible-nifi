@@ -54,6 +54,8 @@
     src: "/opt/nifi-{{ nifi_version }}"
     dest: /opt/nifi-current
     state: link
+    owner: nifi
+    group: nifi
   become: yes
 
 - name: Drop service file
