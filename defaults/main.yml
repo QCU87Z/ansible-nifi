@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-nifi
-download_url: https://www.apache.org/dyn/closer.lua?path=/nifi/1.14.0/nifi-1.14.0-bin.zip
+download_url: https://archive.apache.org/dist/nifi/1.14.0/nifi-1.14.0-bin.tar.gz
 nifi_version: 1.14.0
 packages:
   - unzip
