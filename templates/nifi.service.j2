@@ -6,9 +6,9 @@ After=network.target
 Type=forking
 User=nifi
 Group=nifi
-ExecStart=/opt/nifi-latest/bin/nifi.sh start
-ExecStop=/opt/nifi-latest/bin/nifi.sh stop
-ExecRestart=/opt/nifi-latest/bin/nifi.sh restart 
+ExecStart=/opt/nifi-current/bin/nifi.sh start
+ExecStop=/opt/nifi-current/bin/nifi.sh stop
+ExecRestart=/opt/nifi-current/bin/nifi.sh restart 
 
 [Install]
 WantedBy=multi-user.target
