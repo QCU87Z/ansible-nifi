@@ -16,6 +16,7 @@
   unarchive:
     src: /tmp/nifi.tar.gz
     dest: /opt
+    remote_src: true
   become: yes
 
 - name: remote tar
