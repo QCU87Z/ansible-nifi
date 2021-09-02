@@ -38,7 +38,7 @@
 
     - name: fix owner
       file:
-        path: /opt/nifi-current
+        path: "/opt/nifi-{{ nifi_version }}"
         recurse: true
         owner: nifi
         group: nifi
