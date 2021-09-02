@@ -10,7 +10,7 @@
 - name: Download binary
   get_url:
     url: "{{ download_url }}"
-    dest: /tmp
+    dest: /tmp/nifi.tar.gz
 
 - name: unpack tar
   unarchive:
