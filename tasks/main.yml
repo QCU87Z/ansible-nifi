@@ -7,22 +7,30 @@
     state: present
   become: yes
 
-- name: Download binary
-  get_url:
-    url: "{{ download_url }}"
-    dest: /tmp/nifi.tar.gz
+- name: Check if we need to install nifi
+  stat:
+    path: /opt/nifi-current/bin/nifi.sh
+  register: nifi_installed
 
-- name: unpack tar
-  unarchive:
-    src: /tmp/nifi.tar.gz
-    dest: /opt
-    remote_src: true
-  become: yes
+- name: Install nifi
+  block:
+    - name: Download binary
+      get_url:
+        url: "{{ download_url }}"
+        dest: /tmp/nifi.tar.gz
 
-- name: remote tar
-  file:
-    path: /tmp/nifi.tar.gz
-    state: absent
+    - name: unpack tar
+      unarchive:
+        src: /tmp/nifi.tar.gz
+        dest: /opt
+        remote_src: true
+      become: yes
+
+    - name: remote tar
+      file:
+        path: /tmp/nifi.tar.gz
+        state: absent
+  when: not nifi_installed.stat.exists
 
 - name: Create sym link
   file:
