@@ -15,6 +15,7 @@
     password: "!"
     shell: /usr/sbin/nologin
     state: present
+  become: yes
 
 - name: Check if we need to install nifi
   stat:
