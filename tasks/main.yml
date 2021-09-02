@@ -16,12 +16,19 @@
   unarchive:
     src: /tmp/nifi.tar.gz
     dest: /opt
+  become: yes
+
+- name: remote tar
+  file:
+    path: /tmp/nifi.tar.gz
+    state: absent
 
 - name: Create sym link
   file:
     src: "/opt/nifi-{{ nifi_version }}"
     dest: /opt/nifi-current
     state: link
+  become: yes
 
 - name: Drop service file
   template:
@@ -31,8 +38,10 @@
     owner: root
     group: root
   register: service_file
+  become: yes
 
 - name: Daemon reload
   systemd:
     daemon_reload: true
   when: service_file.changed
+  become: yes
