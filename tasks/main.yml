@@ -1,6 +1,12 @@
 ---
 # tasks file for ansible-nifi
 
+- name: ensure required packages are installed
+  yum:
+    name: "{{ packages }}"
+    state: present
+  become: yes
+
 - name: Download binary
   unarchive:
     src: "{{ download_url }}"
